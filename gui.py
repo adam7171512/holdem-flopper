@@ -76,8 +76,11 @@ class FlopperGui(tk.Tk):
 
         self.filter_field.grid(column=1, row=4)
 
+        clear_filter_button = ttk.Button(self, text="Clear filters", command=self.clear_filter)
+        clear_filter_button.grid(column=1, row=5, pady=5)
+
         get_flops_button = tk.Button(self, text="GET FLOP LIST", command='', bg='light green')
-        get_flops_button.grid(column=1, row=5, pady=5)
+        get_flops_button.grid(column=1, row=6, pady=5)
 
         flop_list_frame = tk.Frame(self)
         flop_list_frame.config(borderwidth=1, relief="sunken")
@@ -100,6 +103,9 @@ class FlopperGui(tk.Tk):
                 self.filter_field.insert('end', self.filter_negation_clicked.get() + self.texture_clicked.get()  + " " + self.ranks_card_clicked.get() + "\n")
             else:
                 self.filter_field.insert('end', self.logical_operator_clicked.get() + self.filter_negation_clicked.get()  + self.texture_clicked.get() + " " + self.ranks_card_clicked.get() + "\n")
+
+    def clear_filter(self):
+        self.filter_field.delete('0.0', 'end')
 
 
 gui = FlopperGui()
