@@ -6,7 +6,7 @@ from flopper import *
 texture_labels = ["rainbow", "two tone", "monotone", "straight possible", "paired"
     , "tripsed", "has card", "max bound card", "min bound card"]
 
-filter_dict = {"rainbow": 'is_rainbow(flop)', "two tone": "is_two_tone(flop"
+filter_dict = {"rainbow": 'is_rainbow(flop)', "two tone": "is_two_tone(flop)"
     , "monotone": "is_mono(flop)", "straight possible": "straight_possible(flop)"
     , "paired": "is_paired(flop)", "tripsed": "is_tripsed(flop)", "has card": "has_card(flop, '"
     , "max bound card": "max_bound_card(flop, '", "min bound card": "min_bound_card(flop, '"}
