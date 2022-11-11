@@ -46,6 +46,7 @@ class FlopperGui(tk.Tk):
         self.flopper = Flopper()
 
         self.create_widgets()
+        self.print_flops()
 
     def create_widgets(self):
 
@@ -82,7 +83,7 @@ class FlopperGui(tk.Tk):
         add_filter_button = ttk.Button(self, text="ADD FILTER", command=self.add_filter)
         add_filter_button.grid(column=1, row=3, pady=5)
 
-        self.filter_field = tk.Text(self, width=20, height=10)
+        self.filter_field = tk.Text(self, width=20, height=10, wrap=tk.WORD)
         self.filter_field.grid(column=1, row=4)
 
         clear_filter_button = ttk.Button(self, text="Clear filters", command=self.clear_filter)
@@ -157,7 +158,10 @@ class FlopperGui(tk.Tk):
     def get_flops(self):
 
         def conditions(flop: str) -> bool:
-            return eval(self.get_methods())
+            if len(self.filter_field.get("0.0", "end")) == 1:
+                return True
+            else:
+                return eval(self.get_methods())
 
         flops = self.flopper.get_flops(cond_check=conditions)
         return flops
@@ -181,4 +185,5 @@ class FlopperGui(tk.Tk):
 
 
 gui = FlopperGui()
+
 gui.mainloop()
