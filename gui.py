@@ -19,7 +19,7 @@ class FlopperGui(tk.Tk):
         super().__init__()
 
         self.title("Holdem Flopper")
-        self.geometry("380x600")
+        self.geometry("380x500")
         self.resizable(False, False)
 
         self.texture_options = texture_labels
@@ -37,9 +37,11 @@ class FlopperGui(tk.Tk):
         self.and_or_options = ["and ", "or "]
 
         self.filter_field_text = tk.StringVar(self)
+        self.show_weights_clicked = tk.BooleanVar(self)
 
         self.flop_list_field = None
         self.filter_field = None
+        self.flops_number = tk.IntVar(self)
 
         self.flopper = Flopper()
 
@@ -93,15 +95,23 @@ class FlopperGui(tk.Tk):
         flop_list_frame.config(borderwidth=1, relief="sunken")
         flop_list_frame.grid(column=2, row=1, pady=10, padx=10, rowspan=5)
 
+        weights_box = ttk.Checkbutton(flop_list_frame, text="Show weights", variable=self.show_weights_clicked
+                                      , onvalue=True, offvalue=False)
+        weights_box.grid(column=1, row=5, columnspan=2)
+        self.show_weights_clicked.set(True)
+
         flop_list_label = tk.Label(flop_list_frame, text="Filtered canonical flop list ", font=12)
         flop_list_label.grid(column=2, row=0, columnspan=1)
 
-        self.flop_list_field = ScrolledText(flop_list_frame, width=20, height=30)
+        self.flop_list_field = ScrolledText(flop_list_frame, width=20, height=20)
         self.flop_list_field.grid(column=2, row=1, padx=2, rowspan=4)
 
         flop_list_buttons_frame = tk.Frame(self)
         flop_list_buttons_frame.config(borderwidth=1, relief="sunken")
         flop_list_buttons_frame.grid(column=2, row=6, pady=10, padx=10, rowspan=1)
+
+        flop_number_label = tk.Label(flop_list_frame, textvariable=self.flops_number)
+        flop_number_label.grid(column=2, row=6, sticky=tk.EW)
 
         clear_flops_button = tk.Button(flop_list_buttons_frame, text="CLEAR", command=self.clear_flops_field)
         clear_flops_button.grid(column=1, row=1, sticky=tk.W)
@@ -154,8 +164,13 @@ class FlopperGui(tk.Tk):
 
     def print_flops(self):
         self.flop_list_field.delete("0.0", "end")
-        for element in self.get_flops():
-            self.flop_list_field.insert("end", element + "\n")
+        if self.show_weights_clicked.get():
+            for element in self.get_flops():
+                self.flop_list_field.insert("end", element + "\n")
+        else:
+            for element in self.get_flops():
+                self.flop_list_field.insert("end", element[:6] + "\n")
+        self.flops_number.set(len(self.get_flops()))
 
     def clear_flops_field(self):
         self.flop_list_field.delete("0.0", "end")
