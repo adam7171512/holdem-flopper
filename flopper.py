@@ -22,15 +22,15 @@ def high_card(flop: str) -> str:
     return inv_cards_and_ranks[max_rank]
 
 
-def lower_or(flop: str, card: str) -> bool:
+def max_bound_card(flop: str, card: str) -> bool:
     if max(get_ranks(flop)) <= cards_and_ranks[card]:
         return True
     else:
         return False
 
 
-def higher_or(flop: str, card: str) -> bool:
-    if max(get_ranks(flop)) >= cards_and_ranks[card]:
+def min_bound_card(flop: str, card: str) -> bool:
+    if min(get_ranks(flop)) >= cards_and_ranks[card]:
         return True
     else:
         return False
