@@ -1,4 +1,4 @@
-from flop_filter import Flop, ranks_values
+from basics import Flop, ranks, ranks_values
 
 
 def is_paired(flop: Flop, rank: str = None) -> bool:
@@ -48,11 +48,14 @@ def is_straight_possible(flop: Flop, rank: str = None) -> bool:
 
 
 def is_straight_draw_possible(flop: Flop, rank: str = None) -> bool:
-    min_dif = 0
     values = flop.values_sorted
+    min_dif = max(values)
+
+    if len(set(values)) == 1:
+        return False
 
     for i in range(len(values) - 1):
-        if values[i + 1] - values[i] > min_dif:
+        if 0 < values[i + 1] - values[i] < min_dif:
             min_dif = values[i + 1] - values[i]
 
     if max(values) < 13:
