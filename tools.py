@@ -127,8 +127,13 @@ class WeightAdder:
         two_tone_unpaired_w = current_flop_combos.two_tone_unpaired and all_flop_comb_fractions.two_tone_unpaired \
             * (current_flop_combos.all / current_flop_combos.two_tone_unpaired)
         weights = [mono_w, tripsed_w, paired_w, rainbow_unpaired_w, two_tone_unpaired_w]
-        min_weight = min(x for x in weights if x > 0)
-        weights = [round((x / min_weight), 4) if x > 0 else None for x in weights]
+
+        if any(weights):
+            min_weight = min(x for x in weights if x > 0)
+            weights = [round((x / min_weight), 4) if x > 0 else None for x in weights]
+        else:
+            weights = [None for _ in weights]
+
         FlopWeights = namedtuple("FlopWeights", "mono tripsed paired rainbow_unpaired two_tone_unpaired")
         flop_weights = FlopWeights(*weights)
         return flop_weights
