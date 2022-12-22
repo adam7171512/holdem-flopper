@@ -1,20 +1,21 @@
 from tkinter.scrolledtext import ScrolledText
 import tkinter as tk
 from tkinter import ttk
-from conditions import *
+import conditions
+from basics import ranks
 from tools import FlopFilter, WeightAdder
 
-labels_functions = {"is rainbow": is_rainbow,
-                    "is two tone": is_two_tone,
-                    "is monotone": is_mono,
-                    "is straight possible": is_straight_possible,
-                    "is straight draw possible": is_straight_draw_possible,
-                    "is paired": is_paired,
-                    "is tripsed": is_tripsed,
-                    "has rank": has_rank,
-                    "max bound rank is": is_not_higher_than,
-                    "min bound rank is": is_not_lower_than,
-                    "paired rank is": has_paired_rank}
+labels_functions = {"is rainbow": conditions.is_rainbow,
+                    "is two tone": conditions.is_two_tone,
+                    "is monotone": conditions.is_mono,
+                    "is straight possible": conditions.is_straight_possible,
+                    "is straight draw possible": conditions.is_straight_draw_possible,
+                    "is paired": conditions.is_paired,
+                    "is tripsed": conditions.is_tripsed,
+                    "has rank": conditions.has_rank,
+                    "max bound rank is": conditions.is_not_higher_than,
+                    "min bound rank is": conditions.is_not_lower_than,
+                    "paired rank is": conditions.has_paired_rank}
 
 
 class FlopperGui(tk.Tk):

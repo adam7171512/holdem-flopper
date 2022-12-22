@@ -1,8 +1,9 @@
 from collections import namedtuple
 from typing import Iterable
-from conditions import *
+import conditions
 from canonical import get_canonical_flops
 from fractions import Fraction
+from basics import Flop
 
 canonical_flops = tuple(get_canonical_flops(get_list=True))
 flop_types = ("all", "mono", "tripsed", "paired", "rainbow_unpaired", "two_tone_unpaired")
@@ -80,15 +81,15 @@ class ComboCounter:
         for flop in self.flops:
             if not isinstance(flop, Flop):
                 flop = Flop(flop)
-            if is_mono(flop):
+            if conditions.is_mono(flop):
                 self.monotone += 1
-            elif is_tripsed(flop):
+            elif conditions.is_tripsed(flop):
                 self.tripsed += 1
-            elif is_paired(flop):
+            elif conditions.is_paired(flop):
                 self.paired += 1
-            elif is_rainbow(flop) and not is_paired(flop):
+            elif conditions.is_rainbow(flop) and not conditions.is_paired(flop):
                 self.rainbow_unpaired += 1
-            elif is_two_tone(flop) and not is_paired(flop):
+            elif conditions.is_two_tone(flop) and not conditions.is_paired(flop):
                 self.two_tone_unpaired += 1
             else:
                 raise ValueError("Something went wrong, can't assign a type to the flop")
@@ -143,15 +144,15 @@ class WeightAdder:
         flops_with_weights = []
         for flop in self.flops:
             flop = Flop(flop)
-            if is_mono(flop):
+            if conditions.is_mono(flop):
                 flops_with_weights.append(flop.name + f':{weights.mono}')
-            elif is_tripsed(flop):
+            elif conditions.is_tripsed(flop):
                 flops_with_weights.append(flop.name + f':{weights.tripsed}')
-            elif is_paired(flop):
+            elif conditions.is_paired(flop):
                 flops_with_weights.append(flop.name + f':{weights.paired}')
-            elif is_rainbow(flop) and not is_paired(flop):
+            elif conditions.is_rainbow(flop) and not conditions.is_paired(flop):
                 flops_with_weights.append(flop.name + f':{weights.rainbow_unpaired}')
-            elif is_two_tone and not is_paired(flop):
+            elif conditions.is_two_tone and not conditions.is_paired(flop):
                 flops_with_weights.append(flop.name + f':{weights.two_tone_unpaired}')
             else:
                 raise ValueError("Something went wrong! Cant assign a type to the flop!")
