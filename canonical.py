@@ -60,7 +60,6 @@ def get_canonical_flops(suits: tuple = canon_suits, ranks: tuple = canon_ranks,
                      ranks[j] + suits[1])
             canonical_flops.add(flop1)
             canonical_flops.add(flop2)
-    i, j, k = 0, 0, 0
 
     # two-tone flops that don't have pair, forming pattern suit0, suit0, suit1 (2c3c8d)
     # or suit0, suit1, suit1 (2c 3d 8d) or suit0, suit1, suit0 (2c 3d 8c)
@@ -89,4 +88,3 @@ def get_canonical_flops(suits: tuple = canon_suits, ranks: tuple = canon_ranks,
 
         canonical_flops_list = sorted(canonical_flops, key=_sortkey)
         return canonical_flops_list
-

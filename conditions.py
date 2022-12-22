@@ -1,4 +1,4 @@
-from basics import Flop, ranks, ranks_values
+from basics import Flop, ranks_values
 
 
 def is_paired(flop: Flop, rank: str = None) -> bool:
