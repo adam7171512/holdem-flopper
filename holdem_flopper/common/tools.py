@@ -36,7 +36,8 @@ class FlopFilter:
             raise ValueError("Wrong logical operator! Only 'and' and 'or' accepted!")
 
     def get_flops(self):
-        return sorted([x.name for x in self.filtered_flops])
+        sorted_flops = sorted(self.filtered_flops, key=lambda x: (x.values, x.suits))
+        return [x.name for x in sorted_flops]
 
     def __call__(self):
         return self.get_flops()

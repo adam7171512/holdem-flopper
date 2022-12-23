@@ -38,3 +38,4 @@ class Flop:
     def check_flop(self, fn, card=None):
         return fn(self, card)
 
+
