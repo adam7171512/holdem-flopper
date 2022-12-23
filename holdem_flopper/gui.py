@@ -5,13 +5,13 @@ from .common import conditions
 from .common.basics import ranks
 from .common.tools import FlopFilter, WeightAdder
 
-labels_functions = {"is rainbow": conditions.is_rainbow,
-                    "is two tone": conditions.is_two_tone,
-                    "is monotone": conditions.is_mono,
-                    "is straight possible": conditions.is_straight_possible,
-                    "is straight draw possible": conditions.is_straight_draw_possible,
-                    "is paired": conditions.is_paired,
-                    "is tripsed": conditions.is_tripsed,
+labels_functions = {"rainbow": conditions.is_rainbow,
+                    "two tone": conditions.is_two_tone,
+                    "monotone": conditions.is_mono,
+                    "straight possible": conditions.is_straight_possible,
+                    "straight draw possible": conditions.is_straight_draw_possible,
+                    "paired": conditions.is_paired,
+                    "tripsed": conditions.is_tripsed,
                     "has rank": conditions.has_rank,
                     "max bound rank is": conditions.is_not_higher_than,
                     "min bound rank is": conditions.is_not_lower_than,
@@ -51,7 +51,7 @@ class FlopperGui(tk.Tk):
         self.texture_label.grid(column=0, row=0, columnspan=2)
         self.texture_dropdown = ttk.OptionMenu(self.texture_frame,
                                                self.texture_clicked,
-                                               "is monotone",
+                                               "monotone",
                                                *self.texture_options)
         self.texture_dropdown.grid(column=0, row=1, pady=2)
         self.ranks_card_dropdown = ttk.OptionMenu(self.texture_frame,
