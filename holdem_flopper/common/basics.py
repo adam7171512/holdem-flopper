@@ -2,7 +2,7 @@ from typing import Union
 
 ranks = ('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
 suits = ("c", "d", "h", "s")
-cards = (rank + suit for rank in ranks for suit in suits)
+cards = tuple(rank + suit for rank in ranks for suit in suits)
 values = tuple(x for x in range(1, len(ranks) + 1))
 ranks_values = {rank: value for rank, value in zip(ranks, values, strict=True)}
 values_ranks = {value: rank for rank, value in zip(ranks, values, strict=True)}
@@ -37,5 +37,3 @@ class Flop:
 
     def check_flop(self, fn, card=None):
         return fn(self, card)
-
-
