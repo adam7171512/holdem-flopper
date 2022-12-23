@@ -1,9 +1,9 @@
 from tkinter.scrolledtext import ScrolledText
 import tkinter as tk
 from tkinter import ttk
-import conditions
-from basics import ranks
-from tools import FlopFilter, WeightAdder
+from .common import conditions
+from .common.basics import ranks
+from .common.tools import FlopFilter, WeightAdder
 
 labels_functions = {"is rainbow": conditions.is_rainbow,
                     "is two tone": conditions.is_two_tone,
@@ -180,6 +180,7 @@ class FlopperGui(tk.Tk):
         self.clipboard_append(self.flop_list_field.get("1.0", "end"))
 
 
+gui = FlopperGui()
+
 if __name__ == '__main__':
-    gui = FlopperGui()
     gui.mainloop()
