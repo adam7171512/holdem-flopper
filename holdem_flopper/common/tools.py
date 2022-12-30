@@ -72,10 +72,7 @@ class ComboCounter:
         self.paired = 0
         self.rainbow_unpaired = 0
         self.two_tone_unpaired = 0
-
-    @property
-    def all(self):
-        return self.monotone + self.tripsed + self.paired + self.rainbow_unpaired + self.two_tone_unpaired
+        self.all = 0
 
     def count_combos(self):
 
@@ -94,6 +91,7 @@ class ComboCounter:
                 self.two_tone_unpaired += 1
             else:
                 raise ValueError("Something went wrong, can't assign a type to the flop")
+        self.all = self.monotone + self.tripsed + self.paired + self.rainbow_unpaired + self.two_tone_unpaired
 
         flop_type_combs = FlopTypesCombs(self.all, self.monotone, self.tripsed,
                                          self.paired, self.rainbow_unpaired, self.two_tone_unpaired)
