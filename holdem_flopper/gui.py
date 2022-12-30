@@ -1,9 +1,9 @@
 from tkinter.scrolledtext import ScrolledText
 import tkinter as tk
 from tkinter import ttk
-from .common import conditions
-from .common.basics import ranks
-from .common.tools import FlopFilter, WeightAdder
+from holdem_flopper.common import conditions
+from holdem_flopper.common.basics import ranks
+from holdem_flopper.common.tools import FlopFilter, WeightAdder
 
 labels_functions = {"rainbow": conditions.is_rainbow,
                     "two tone": conditions.is_two_tone,

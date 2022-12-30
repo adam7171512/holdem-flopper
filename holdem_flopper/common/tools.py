@@ -1,9 +1,9 @@
 from collections import namedtuple
 from typing import Iterable
-from . import conditions
-from .canonical import get_canonical_flops
+from holdem_flopper.common import conditions
+from holdem_flopper.common.canonical import get_canonical_flops
 from fractions import Fraction
-from .basics import Flop
+from holdem_flopper.common.basics import Flop
 
 canonical_flops = tuple(get_canonical_flops(get_list=True))
 flop_types = ("all", "mono", "tripsed", "paired", "rainbow_unpaired", "two_tone_unpaired")

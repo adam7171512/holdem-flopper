@@ -1,4 +1,4 @@
-from .basics import Flop, ranks_values
+from holdem_flopper.common.basics import Flop, ranks_values
 
 
 def is_paired(flop: Flop, rank: str = None) -> bool:
